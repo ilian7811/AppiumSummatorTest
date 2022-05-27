@@ -10,13 +10,19 @@ namespace AppiumSummatorTest
     {
         public WindowsDriver<WindowsElement> driver;
         public static string AppiumServerAddress = "http://127.0.0.1:4723/wd/hub";
-        public AppiumOptions options;
-        
-        
+        //public AppiumOptions options;
+
+        [TearDown]
+        public void HhutDown()
+        {
+            driver.Quit();
+        } 
+
+
         [SetUp]
         public void Setup()
         {
-            this.options = new AppiumOptions(){ PlatformName = "Windows" };            
+            var options = new AppiumOptions(){ PlatformName = "Windows" };            
             options.AddAdditionalCapability(MobileCapabilityType.App, @"C:\Users\Ilqn\source\SummatorDesktopApp.exe");
             this.driver = new WindowsDriver<WindowsElement>(new Uri(AppiumServerAddress), options);
         }
@@ -27,4 +33,4 @@ namespace AppiumSummatorTest
             Assert.Pass();
         }
     }
-}
+}// 23.5 -> 1:51
